@@ -1,0 +1,16 @@
+version: '3'
+services:
+  koha:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./db:/var/lib/mysql
+      # Додайте інші каталоги, які вам потрібно прокинути в контейнер
+    depends_on:
+      - db
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: koha
